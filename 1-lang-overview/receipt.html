@@ -65,21 +65,52 @@
         console.log("---------------------")
         console.log("PART 1...")
 
-
-
+        function formatUSD(price) {
+            return `$${price.toFixed(2)}`
+        }
+        var formattedPrice = formatUSD(4.6777)
+        console.log("1. Formatted Price: ", formattedPrice)
 
         console.log("---------------------")
         console.log("PART 2...")
 
-
-
-
+        function formatPct(percentage) {
+            percentage = percentage * 100
+            return `${percentage.toFixed(2)}%`
+        }
+        var formattedPercent = formatPct(0.0875);
+        console.log("2. Formatted Percentage: ", formattedPercent)
 
         console.log("---------------------")
         console.log("PART 3...")
 
+        var subTotalAmount = 19.41;
+        var taxRatePercent = 0.0875
+        var taxOwedAmount = taxRatePercent * subTotalAmount
+        var totalAmountOwed = subTotalAmount + taxOwedAmount
+        console.log("3. Subtotal: ", subTotalAmount )
+        console.log("3. Tax rate: ", formatPct(taxRatePercent))
+        console.log("3. Tax owed: ", formatUSD(taxOwedAmount))
+        console.log("3. Total amount: ", formatUSD(totalAmountOwed))
 
 
+        console.log("---------------------")
+        console.log("PART 4...")
+
+        function generateReceipt(subtotal, taxRate = 0.0875) {  
+            var taxOwed = taxRate * subtotal
+            var total = subtotal + taxOwed
+            return {"subtotal": subtotal, 
+                    "taxRate": taxRate,
+                    "taxOwed": taxOwed,
+                    "total": total
+                    }     
+
+        }
+        var receipt = generateReceipt(19.41)
+        console.log("4. Subtotal: ", receipt.subtotal )
+        console.log("4. Tax owed: ", formatUSD(receipt.taxOwed))
+        console.log("4. Total amount: ", formatUSD(receipt.total))
 
     </script>
 </body>

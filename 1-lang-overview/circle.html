@@ -39,7 +39,7 @@
     </p>
 
     <label>Radius:</label>
-    <input id="input-radius" type="number" placeholder="9" value="9"></input>
+    <input id="input-radius" type="number" placeholder="9"></input>
     <button id="calculate">Calculate</button>
 
     <br>
@@ -52,14 +52,30 @@
         console.log("---------------------")
         console.log("PART 1...")
 
-
-
-
+        var radius
+        var area
+        function calculateCircleArea(radius) {
+            console.log("Radius: ", radius)
+            return 22/7 * (radius * radius)
+        }
+        area = calculateCircleArea(9)
+        console.log("1. Cicle Area: ", area)
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        var btn = document.getElementById("calculate")
+        var inputR = document.getElementById("input-radius")
+        var displayArea = document.getElementById("display-area")
 
+        function submit() {
+            var radius = inputR.value
+            var circleArea = calculateCircleArea(radius)
+            displayArea.innerText = circleArea
+            console.log("2. Cirle Area: ", circleArea)
+        }
+        btn.addEventListener("click", submit, false)
+        
 
 
 
