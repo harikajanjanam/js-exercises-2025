@@ -94,17 +94,38 @@
             console.log("---------------------")
             console.log("PART 1...")
 
+            // A. Number of days
+            console.log(`Number of days: ${data.length}`);
 
+            // Sort by date ascending (earliest first)
+            const sortedData = data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+            // B. Earliest day info
+            const earliest = sortedData[0];
+            const earliestDate = earliest.timestamp;
+            const earliestClose = parseFloat(earliest.adjusted_close);
+            console.log(`Earliest: ${earliestDate} | ${formatUSD(earliestClose)}`);
+
+            // C. Latest day info
+            const latest = sortedData[sortedData.length - 1];
+            const latestDate = latest.timestamp;
+            const latestClose = parseFloat(latest.adjusted_close);
+            console.log(`Latest: ${latestDate} | ${formatUSD(latestClose)}`);
+
+            // D. Percent change
+            const pctChange = (latestClose - earliestClose) / earliestClose;
+            console.log(`Percent change: ${formatPct(pctChange)}`);
 
 
 
             console.log("---------------------")
             console.log("PART 2...")
 
-
-
-
-
+            // DOM Updates
+            document.getElementById("display-symbol").textContent = symbol;
+            document.getElementById("display-earliest").textContent = `${earliestDate} | ${formatUSD(earliestClose)}`;
+            document.getElementById("display-latest").textContent = `${latestDate} | ${formatUSD(latestClose)}`;
+            document.getElementById("display-pct-change").textContent = formatPct(pctChange);
 
             }).catch(function(error) {
                 console.error("ERROR:", error)
