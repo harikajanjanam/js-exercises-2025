@@ -85,11 +85,11 @@
         while (balance < 1000000) {
             year = year + 1
             balance = balance * 1.08
-            console.log("Part 1: " + year, balance)
+            console.log("1: " + year, balance)
 
         }
-        console.log("Part 1: DONE")
-        console.log("Part 1:" + year, balance)
+        console.log("1: DONE")
+        console.log("1:" + year, balance)
             
 
         console.log("---------------------")
@@ -103,11 +103,11 @@
             var rate = rateGenerator()
             year = year + 1
             balance = balance * (1 + rate)
-            console.log("Part 2: Year: " + year + ", Balance: " + formatUSD(balance) + ", Rate:" + rate)
+            console.log("2: Year: " + year + ", Balance: " + formatUSD(balance) + ", Rate:" + rate)
         }
 
-        console.log("Part 2: DONE")
-        console.log("Part 2:" + year, balance)
+        console.log("2: DONE")
+        console.log("2:" + year, balance)
 
 
         console.log("---------------------")
@@ -129,12 +129,12 @@
                 var rate = newRateGenerator()
                 year = year + 1
                 startBal = startBal * (1 + rate)
-                console.log("Part 3: Year: " + year + ", Balance: " + formatUSD(startBal) + ", Rate:" + rate)
+                console.log("3: Year: " + year + ", Balance: " + formatUSD(startBal) + ", Rate:" + rate)
             }
             endYears.innerText = year
             endBalResult.innerText = formatUSD(startBal)
-            console.log("Part 3: DONE")
-            console.log("Part 3:" + year, startBal, rate)
+            console.log("3: DONE")
+            console.log("3:" + year, startBal, rate)
         }
 
         btn.addEventListener("click", submit, false)
