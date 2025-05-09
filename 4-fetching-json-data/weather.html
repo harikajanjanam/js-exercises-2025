@@ -90,14 +90,64 @@
                 console.log("---------------------")
                 console.log("PART 1...")
 
+                // A. Date generated
+                const dateGenerated = data.properties.updated;
+                console.log(`Date generated: ${dateGenerated}`);
+
+                // B. Total number of periods
+                const periods = data.properties.periods;
+                console.log(`Number of periods: ${periods.length}`);
+
+                // C. Filter for daytime periods only
+                const daytimePeriods = periods.filter(period => period.isDaytime);
+                console.log("Daytime periods:", daytimePeriods);
+
+                // D. Number of daytime periods
+                console.log(`Number of daytime periods: ${daytimePeriods.length}`);
+
+                // E. Display each daytime period forecast
+                daytimePeriods.forEach(period => {
+                console.log(`${period.name}: ${period.temperature}${degreeSymbol}${period.temperatureUnit} - ${period.shortForecast || period.detailedForecast}`);
+                });
 
 
 
                 console.log("---------------------")
                 console.log("PART 2...")
+                // A. Display date on page
+                document.getElementById("display-date").textContent = dateGenerated;
 
+                // B. Build forecast table
+                const table = document.getElementById("display-forecast");
 
+                // Add table header
+                const headerRow = table.insertRow();
+                ["Period", "Temperature", "Forecast", "Icon"].forEach(header => {
+                const th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+                });
 
+                // Add each daytime forecast
+                daytimePeriods.forEach(period => {
+                const row = table.insertRow();
+
+                const cellPeriod = row.insertCell();
+                cellPeriod.textContent = period.name;
+
+                const cellTemp = row.insertCell();
+                cellTemp.textContent = `${period.temperature}${degreeSymbol}${period.temperatureUnit}`;
+
+                const cellForecast = row.insertCell();
+                cellForecast.textContent = period.shortForecast || period.detailedForecast;
+
+                const cellIcon = row.insertCell();
+                const img = document.createElement("img");
+                img.src = period.icon;
+                img.alt = period.shortForecast;
+                img.width = 50;
+                cellIcon.appendChild(img);
+                });
 
             })
             .catch(err => console.log(err))

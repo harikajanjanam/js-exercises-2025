@@ -83,7 +83,36 @@
             console.log("---------------------")
             console.log("PART 1...")
 
+            // A. Display number of products
+            console.log(`Number of products: ${products.length}`);
 
+            // B. Loop through products and display name + formatted price
+            products.forEach(p => {
+                const price = parseFloat(p["price"]);
+                console.log(`${p["name"]}: $${price.toFixed(2)}`);
+            });
+
+            // C. Unique departments
+            let departments = [];
+            products.forEach(p => {
+                const dept = p["department"];
+                if (!departments.includes(dept)) {
+                    departments.push(dept);
+                }
+            });
+            console.log(`Number of unique departments: ${departments.length}`);
+            departments.forEach(d => {
+                console.log(d.toUpperCase());
+            });
+
+            // D. Filter products in "beverages" department
+            const beverages = products.filter(p => p["department"] === "beverages");
+            console.log(`Number of beverage products: ${beverages.length}`);
+
+            // E. Average price of beverage products
+            const beveragePrices = beverages.map(p => parseFloat(p["price"]));
+            const avgBeveragePrice = beveragePrices.reduce((sum, val) => sum + val, 0) / beveragePrices.length;
+            console.log(`Average beverage price: $${avgBeveragePrice.toFixed(2)}`);
 
 
 
@@ -91,14 +120,18 @@
             console.log("---------------------")
             console.log("PART 2...")
 
+            // A. Sort products by name
+            products.sort((a, b) => a["name"].localeCompare(b["name"]));
 
+            // B. Display sorted products in <ul>
+            const ul = document.getElementById("display-groceries");
 
-
-
-
-
-
-
+            products.forEach(p => {
+                const price = parseFloat(p["price"]);
+                const li = document.createElement("li");
+                li.textContent = `${p["name"]} - $${price.toFixed(2)}`;
+                ul.appendChild(li);
+            });
 
             }).catch(function(error) {
                 console.error("ERROR:", error)

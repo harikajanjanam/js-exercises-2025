@@ -91,15 +91,12 @@
 
                 // B. Display title and year of each movie
                 data.forEach(movie => {
-                console.log(`askjhdakjhsdakd ${movie.Title} (${movie.Year})`);
+                console.log(`${movie.Title} (${movie.Year})`);
                 });
 
                 // C. Movie with highest rating
                 const topMovie = data.reduce((max, movie) => movie.Rating > max.Rating ? movie : max, data[0]);
                 console.log(`Top-rated movie: ${topMovie.Title} (${topMovie.Rating}/10)`);
-
-
-
 
                 console.log("---------------------")
                 console.log("PART 2...")
@@ -117,21 +114,21 @@
 
             // B. Function to update display
             function updateMovieInfo() {
-            const selectedId = dropdown.value;
-            const selectedMovie = data.find(movie => movie.Id === selectedId);
-            if (!selectedMovie) return;
+                const selectedId = dropdown.value;
+                const selectedMovie = data.find(movie => movie.Id === selectedId);
+                if (!selectedMovie) return;
 
-            document.getElementById("display-title").textContent = selectedMovie.Title;
-            document.getElementById("display-year").textContent = selectedMovie.Year;
-            document.getElementById("display-rating").textContent = selectedMovie.Rating;
+                document.getElementById("display-title").textContent = selectedMovie.Title;
+                document.getElementById("display-year").textContent = selectedMovie.Year;
+                document.getElementById("display-rating").textContent = selectedMovie.Rating;
 
-            const imageContainer = document.getElementById("image-container");
-            imageContainer.innerHTML = ""; // Clear previous image
-            const img = document.createElement("img");
-            img.src = selectedMovie['Thumbnail Image URL'];
-            img.alt = selectedMovie.Title;
-            img.width = 200;
-            imageContainer.appendChild(img);
+                const imageContainer = document.getElementById("image-container");
+                imageContainer.innerHTML = ""; // Clear previous image
+                const img = document.createElement("img");
+                img.src = selectedMovie['Thumbnail Image URL'];
+                img.alt = selectedMovie.Title;
+                img.width = 200;
+                imageContainer.appendChild(img);
             }
 
             // C. Add event listener
