@@ -62,15 +62,56 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        // Total number of products
+        console.log(`Total products: ${products.length}`);
 
+        // Display each product's name and price
+        products.forEach(product => {
+        console.log(`${product.name}: $${product.price}`);
+        });
 
+        // Filter products priced below $50
+        const matchingProducts = products.filter(product => product.price < 50);
+        console.log("Matching products:", matchingProducts);
 
+        // Total number of matching products
+        console.log(`Total matching products: ${matchingProducts.length}`);
 
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        const displayDiv = document.getElementById("display-products");
 
+        // Loop through each product and create display blocks
+        products.forEach(product => {
+        const productDiv = document.createElement("div");
+
+        const nameP = document.createElement("p");
+        nameP.textContent = `Name: ${product.name}`;
+
+        const descP = document.createElement("p");
+        descP.textContent = `Description: ${product.description}`;
+
+        const priceP = document.createElement("p");
+        priceP.textContent = `Price: $${product.price}`;
+
+        const image = document.createElement("img");
+        image.src = product.imageURL;
+        image.alt = product.name;
+
+        const hr = document.createElement("hr");
+
+        // Append all elements to the product div
+        productDiv.appendChild(nameP);
+        productDiv.appendChild(descP);
+        productDiv.appendChild(priceP);
+        productDiv.appendChild(image);
+        productDiv.appendChild(hr);
+
+        // Append the product div to the main display div
+        displayDiv.appendChild(productDiv);
+        });
 
 
     </script>

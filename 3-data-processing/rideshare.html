@@ -87,14 +87,41 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        console.log(`Your driver is ${trip.driver.first_name}`);
+        console.log(`License Plate: ${trip.vehicle.licensePlate}`);
+        console.log(`Number of stops: ${trip.stops.length}`);
+        console.log(`First stop destination: ${trip.stops[0].destination}`);
+        console.log(`Last stop destination: ${trip.stops[trip.stops.length - 1].destination}`);
 
+        // Display each passenger name
+        trip.stops.forEach(stop => console.log(stop.passenger));
+
+        // Map to extract fare values
+        const fares = trip.stops.map(stop => stop.fare);
+        console.log("Fares:", fares);
+
+        // Calculate total fare
+        const totalFare = fares.reduce((sum, fare) => sum + fare, 0).toFixed(2);
+        console.log(`Total fare: $${totalFare}`);
 
 
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        // Display driver's first name
+        document.getElementById("display-driver").textContent = trip.driver.first_name;
 
+        // Display vehicle make, model, and license plate
+        document.getElementById("display-vehicle").textContent = `${trip.vehicle.make} ${trip.vehicle.model} (${trip.vehicle.licensePlate})`;
+
+        // Display passengers as list items
+        const passengerList = document.getElementById("display-passengers");
+        trip.stops.forEach(stop => {
+            const li = document.createElement("li");
+            li.textContent = stop.passenger;
+            passengerList.appendChild(li);
+        });
 
 
 

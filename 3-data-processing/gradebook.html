@@ -64,17 +64,55 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        // Display download date
+        console.log(`Download Date: ${gradebook.downloadDate}`);
 
+        // Display number of students
+        console.log(`Number of students: ${gradebook.students.length}`);
 
+        // Display each student's name and grade
+        gradebook.students.forEach(student => {
+        console.log(`${student.name}: ${student.finalGrade}`);
+        });
 
+        // Create grades array using map
+        const grades = gradebook.students.map(student => student.finalGrade);
+        console.log("Grades:", grades);
+
+        // Calculate average grade using d3.mean
+        const averageGrade = d3.mean(grades).toFixed(2);
+        console.log(`Average grade: ${averageGrade}`);
+
+        // Calculate median grade using d3.median
+        const medianGrade = d3.median(grades).toFixed(2);
+        console.log(`Median grade: ${medianGrade}`);
 
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        // Reference to the table
+        const table = document.getElementById("display-gradebook");
 
+        // Create header row
+        const headerRow = table.insertRow();
+        ["Student ID", "Student Name", "Final Grade"].forEach(text => {
+            const th = document.createElement("th");
+            th.textContent = text;
+            headerRow.appendChild(th);
+        });
 
+        // Add a row for each student
+        gradebook.students.forEach(student => {
+            const row = table.insertRow();
+            const cellId = row.insertCell();
+            const cellName = row.insertCell();
+            const cellGrade = row.insertCell();
 
+            cellId.textContent = student.studentId;
+            cellName.textContent = student.name;
+            cellGrade.textContent = student.finalGrade;
+        });
 
 
     </script>
